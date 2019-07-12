@@ -19,15 +19,14 @@
  */
 package com.cognifide.cq.cqsm.core.servlets;
 
-import com.cognifide.cq.cqsm.api.scriptrunnerjob.JobProgressOutput;
-import com.cognifide.cq.cqsm.core.jobs.ScriptRunnerJobManager;
-import com.cognifide.cq.cqsm.core.utils.ServletUtils;
 import com.google.common.collect.ImmutableMap;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import java.io.IOException;
-import java.util.Map;
-import javax.servlet.ServletException;
+
+import com.cognifide.cq.cqsm.api.scriptrunnerjob.JobProgressOutput;
+import com.cognifide.cq.cqsm.core.jobs.ScriptRunnerJobManager;
+import com.cognifide.cq.cqsm.core.utils.ServletUtils;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.felix.scr.annotations.Properties;
 import org.apache.felix.scr.annotations.Property;
@@ -39,6 +38,11 @@ import org.apache.sling.api.SlingHttpServletResponse;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
 import org.apache.sling.event.jobs.Job;
 import org.osgi.framework.Constants;
+
+import java.io.IOException;
+import java.util.Map;
+
+import javax.servlet.ServletException;
 
 @SlingServlet(paths = {"/bin/cqsm/run-background"}, methods = {"GET", "POST"})
 @Service
@@ -89,7 +93,7 @@ public class ScriptRunBackgroundServlet extends SlingAllMethodsServlet {
 			final SlingHttpServletResponse response) throws IOException {
 		final String searchPath = request.getParameter(FILE_REQUEST_PARAMETER);
 		final String modeName = request.getParameter(MODE_REQUEST_PARAMETER);
-    final String userName = request.getResourceResolver().getUserID();
+		final String userName = request.getResourceResolver().getUserID();
 
 		if (StringUtils.isEmpty(searchPath)) {
 			ServletUtils.writeMessage(response, ERROR_RESPONSE_TYPE,
