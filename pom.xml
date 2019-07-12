@@ -25,7 +25,7 @@
     <!-- The Basics -->
     <groupId>com.cognifide.cq</groupId>
     <artifactId>cqsm</artifactId>
-  <version>3.0.5</version>
+  <version>3.0.6-SNAPSHOT</version>
     <packaging>pom</packaging>
     <dependencyManagement>
         <dependencies>
@@ -482,7 +482,7 @@
     <scm>
         <connection>scm:git:git@github.com:Cognifide/apm.git</connection>
         <developerConnection>scm:git:git@github.com:Cognifide/apm.git</developerConnection>
-        <tag>cqsm-3.0.5</tag>
+        <tag>cqsm-3.0.4</tag>
         <url>https://github.com/Cognifide/apm</url>
     </scm>
     <!-- Repositories  -->
