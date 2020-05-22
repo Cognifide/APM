@@ -71,7 +71,7 @@ Cog.component.cqsmImport = (function ($) {
             success: function (data) {
                 var jobId = JSON.parse(data).id;
 
-                (function checkStatus(jobId) {
+                setTimeout(function(){(function checkStatus(jobId) {
                     $.ajax({
                         type: "GET",
                         url: "/bin/cqsm/run-background?id=" + jobId,
@@ -80,8 +80,6 @@ Cog.component.cqsmImport = (function ($) {
                             var dataObject = JSON.parse(data);
                             if (dataObject.type === 'running') {
                                 setTimeout(function(){checkStatus(jobId)}, 1000);
-                            } else if (dataObject.type === 'finished') {
-                                renderProgress(fileName, mode, jobId, item, start);
                             } else if (dataObject.type === 'unknown') {
                                 var time = new Date().getTime() - start;
                                 helper.showMessage("File: " + fileName + "<br>Mode: " + mode + "<br>Executed with errors in " + time + " ms", dataObject.type, true);
@@ -89,9 +87,12 @@ Cog.component.cqsmImport = (function ($) {
                                     context: $("#cqsmImportPage")
                                 });
                             }
+                        },
+                        complete: function () {
+                            renderProgress(fileName, mode, jobId, item, start);
                         }
                     });
-                })(jobId);
+                })(jobId)}, 100);
             }
         });
     }
